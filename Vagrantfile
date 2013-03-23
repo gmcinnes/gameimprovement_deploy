@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'berkshelf/vagrant'
+
 Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -48,34 +50,42 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
 
-  # Enable provisioning with Puppet stand alone.  Puppet manifests
-  # are contained in a directory path relative to this Vagrantfile.
-  # You will need to create the manifests directory and a manifest in
-  # the file precise32.pp in the manifests_path directory.
-  #
-  # An example Puppet manifest to provision the message of the day:
-  #
-  # # group { "puppet":
-  # #   ensure => "present",
-  # # }
-  # #
-  # # File { owner => 0, group => 0, mode => 0644 }
-  # #
-  # # file { '/etc/motd':
-  # #   content => "Welcome to your Vagrant-built virtual machine!
-  # #               Managed by Puppet.\n"
-  # # }
-  #
-  # config.vm.provision :puppet do |puppet|
-  #   puppet.manifests_path = "manifests"
-  #   puppet.manifest_file  = "precise32.pp"
-  # end
+  config.vm.provision :chef_solo do |chef|
+    chef.add_recipe "apt"
+    chef.add_recipe "ntp"
+    chef.add_recipe "vim"
+    chef.add_recipe "nginx"
+    chef.add_recipe "openssh"
+    chef.add_recipe "sudo"
+    chef.add_recipe "postfix"
+    chef.add_recipe "logrotate"
+    chef.add_recipe "ufw"
+    chef.json = {
+      "authorization" => {
+        "sudo" => {
+          "groups" => ["admin", "wheel", "sysadmin"],
+          "users"  => ["vagrant"],
+          "passwordless" => "true"
+        }
+      },
+      "firewall" => {
+        "open ports for http" => {
+          "port" => "8080"
+        }
+      }
+    }
+  #   chef.json = {
+  #     :mysql => {
+  #       :server_root_password => 'rootpass',
+  #       :server_debian_password => 'debpass',
+  #       :server_repl_password => 'replpass'
+  #     }
+  #   }
+  #   
+    # chef.run_list = [
+    #   "recipe[nginx]"
+    # ]
 
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding
-  # some recipes and/or roles.
-  #
-  # config.vm.provision :chef_solo do |chef|
   #   chef.cookbooks_path = "../my-recipes/cookbooks"
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
@@ -84,7 +94,7 @@ Vagrant.configure("2") do |config|
   #
   #   # You may also specify custom JSON attributes:
   #   chef.json = { :mysql_password => "foo" }
-  # end
+  end
 
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
