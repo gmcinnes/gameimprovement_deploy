@@ -9,11 +9,11 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise32"
+  config.vm.box = "precise64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -52,15 +52,87 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe "apt"
+    chef.add_recipe "unattended_upgrades"
+    chef.add_recipe "gameimprovement_bootstrap"
+    chef.add_recipe "gameimprovement_bootstrap::sysctl"
+    chef.add_recipe "rbenv"
+    chef.add_recipe "rbenv::ruby_build"
+    chef.add_recipe "gameimprovement_bootstrap::install_ruby"
+    chef.add_recipe "monit"
     chef.add_recipe "ntp"
     chef.add_recipe "vim"
-    chef.add_recipe "nginx"
+    chef.add_recipe "ufw"
     chef.add_recipe "openssh"
     chef.add_recipe "sudo"
     chef.add_recipe "postfix"
+    chef.add_recipe "nginx"
+    chef.add_recipe "mongodb"
+    chef.add_recipe "gameimprovement_bootstrap::limits"
+    chef.add_recipe "gameimprovement_bootstrap::mongodb_ulimits"
+    chef.add_recipe "nodejs"
+    chef.add_recipe "npm"
+    chef.add_recipe "gameimprovement_bootstrap::node_dependencies"
     chef.add_recipe "logrotate"
-    chef.add_recipe "ufw"
+    chef.add_recipe "phantomjs"
+    chef.add_recipe "fail2ban"
+    chef.add_recipe "users"
     chef.json = {
+      "limits" => {
+        "mongodb" => {
+          "nproc" => {
+            "soft" => "32000",
+            "hard" => "32001"
+          },
+          "nofile" => {
+            "soft" => "64000",
+            "hard" => "64001"
+          }
+        }
+      },
+      "unicorn" => {
+        "worker_timeout" => "60",
+        "preload_app"    => false,
+        "before_fork"    => "sleep 1",
+        "port"           => "8080",
+        "options"        => { "tcp_nodelay" => true, "backlog" => 100 }
+      },
+      "sysctl" => { 
+        # Sysctl Magic Shit (TM)
+        
+        # 256 KB default performs well experimentally, and is often recommended by ISVs.
+        "net.core.rmem_default"      => "262144",
+        "net.core.wmem_default"      => "262144",
+      
+        # Decrease the time default value for tcp_fin_timeout connection
+        "net.ipv4.tcp_fin_timeout"    => "30",
+       
+        # Decrease the time default value for tcp_keepalive_time connection
+        "net.ipv4.tcp_keepalive_time" => "1800",
+       
+        # support large window scaling RFC 1323
+        "net.ipv4.tcp_window_scaling" => "1",
+        
+        # Filesystem I/O is usually much more efficient than swapping, so try to keep
+        # swapping low.  It's usually safe to go even lower than this on systems with
+        # server-grade storage.
+        "vm.swappiness" => "0",
+       
+        # If a workload mostly uses anonymous memory and it hits this limit, the entire
+        # working set is buffered for I/O, and any more write buffering would require
+        # swapping, so it's time to throttle writes until I/O can catch up.  Workloads
+        # that mostly use file mappings may be able to use even higher values.
+        "vm.dirty_ratio" => "50",
+
+        # Controls the System Request debugging functionality of the kernel
+        "kernel.sysrq" => 1, 
+
+        # reboot on panic
+        "kernel.panic" => 30, 
+        
+        # Boost up the number of open files for mongodb
+        "fs.file-max" => 102400
+
+      },
       "authorization" => {
         "sudo" => {
           "groups" => ["admin", "wheel", "sysadmin"],
@@ -74,48 +146,5 @@ Vagrant.configure("2") do |config|
         }
       }
     }
-  #   chef.json = {
-  #     :mysql => {
-  #       :server_root_password => 'rootpass',
-  #       :server_debian_password => 'debpass',
-  #       :server_repl_password => 'replpass'
-  #     }
-  #   }
-  #   
-    # chef.run_list = [
-    #   "recipe[nginx]"
-    # ]
-
-  #   chef.cookbooks_path = "../my-recipes/cookbooks"
-  #   chef.roles_path = "../my-recipes/roles"
-  #   chef.data_bags_path = "../my-recipes/data_bags"
-  #   chef.add_recipe "mysql"
-  #   chef.add_role "web"
-  #
-  #   # You may also specify custom JSON attributes:
-  #   chef.json = { :mysql_password => "foo" }
   end
-
-  # Enable provisioning with chef server, specifying the chef server URL,
-  # and the path to the validation key (relative to this Vagrantfile).
-  #
-  # The Opscode Platform uses HTTPS. Substitute your organization for
-  # ORGNAME in the URL and validation key.
-  #
-  # If you have your own Chef Server, use the appropriate URL, which may be
-  # HTTP instead of HTTPS depending on your configuration. Also change the
-  # validation key to validation.pem.
-  #
-  # config.vm.provision :chef_client do |chef|
-  #   chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
-  #   chef.validation_key_path = "ORGNAME-validator.pem"
-  # end
-  #
-  # If you're using the Opscode platform, your validator client is
-  # ORGNAME-validator, replacing ORGNAME with your organization name.
-  #
-  # If you have your own Chef Server, the default validation client name is
-  # chef-validator, unless you changed the configuration.
-  #
-  #   chef.validation_client_name = "ORGNAME-validator"
 end
