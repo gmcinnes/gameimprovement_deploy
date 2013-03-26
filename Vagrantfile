@@ -1,13 +1,6 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
 require 'berkshelf/vagrant'
 
 Vagrant.configure("2") do |config|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
-
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "precise64"
 
@@ -18,65 +11,27 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network :forwarded_port, guest: 80, host: 8080
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  # config.vm.network :private_network, ip: "192.168.33.10"
-
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  # config.vm.network :public_network
-
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  # config.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
-  #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
-  # end
-  #
-  # View the documentation for the provider you're using for more
-  # information on available options.
+  # Port 2222 -> 22 is provided for ssh by default
+  config.vm.network :forwarded_port, guest: 80, host: 8080
 
   config.vm.provision :chef_solo do |chef|
-    chef.add_recipe "apt"
-    chef.add_recipe "unattended_upgrades"
-    chef.add_recipe "gameimprovement_bootstrap"
-    chef.add_recipe "gameimprovement_bootstrap::sysctl"
-    chef.add_recipe "rbenv"
-    chef.add_recipe "rbenv::ruby_build"
-    chef.add_recipe "gameimprovement_bootstrap::install_ruby"
-    chef.add_recipe "monit"
-    chef.add_recipe "ntp"
-    chef.add_recipe "vim"
-    chef.add_recipe "ufw"
-    chef.add_recipe "openssh"
-    chef.add_recipe "sudo"
-    chef.add_recipe "postfix"
-    chef.add_recipe "nginx"
-    chef.add_recipe "mongodb"
-    chef.add_recipe "gameimprovement_bootstrap::limits"
-    chef.add_recipe "gameimprovement_bootstrap::mongodb_ulimits"
-    chef.add_recipe "nodejs"
-    chef.add_recipe "npm"
-    chef.add_recipe "gameimprovement_bootstrap::node_dependencies"
-    chef.add_recipe "logrotate"
-    chef.add_recipe "phantomjs"
-    chef.add_recipe "fail2ban"
-    chef.add_recipe "users"
+    chef.data_bags_path = "data_bags"
+    
+    chef.roles_path = "roles"
+    chef.add_role("baseline")
+    chef.add_role("web")
+    chef.add_role("mongodb")
+    chef.add_role("image_generation_server")
+                
     chef.json = {
+      "openssh" => {
+        "server" => {
+          "subsystem" => "sftp internal-sftp",
+          "password_authentication" => "no",
+          "permit_root_login" => "no"
+        }
+      },
+      "users" => ["deploy"],
       "limits" => {
         "mongodb" => {
           "nproc" => {
@@ -136,13 +91,13 @@ Vagrant.configure("2") do |config|
       "authorization" => {
         "sudo" => {
           "groups" => ["admin", "wheel", "sysadmin"],
-          "users"  => ["vagrant"],
+          "users"  => ["vagrant", "deploy"],
           "passwordless" => "true"
         }
       },
       "firewall" => {
         "open ports for http" => {
-          "port" => "8080"
+          "port" => "80"
         }
       }
     }
