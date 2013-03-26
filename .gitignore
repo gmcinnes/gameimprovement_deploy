@@ -19,3 +19,4 @@ doc/
 
 bin/*
 .vagrant
+data_bags/secrets/*
