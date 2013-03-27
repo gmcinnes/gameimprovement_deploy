@@ -2,7 +2,7 @@ site :opscode
 
 cookbook 'apt'
 cookbook 'unattended_upgrades'
-cookbook 'gameimprovement_bootstrap', path: "/Users/gmcinnes/Documents/projects/GameImprovementCookbooks/gameimprovement_bootstrap"
+cookbook 'gameimprovement_bootstrap', path: "./site-cookbooks/gameimprovement_bootstrap"
 cookbook 'rbenv'
 cookbook 'monit'
 cookbook 'ntp'

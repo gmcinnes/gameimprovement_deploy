@@ -1,0 +1,8 @@
+CHECK PROCESS unicorn WITH PIDFILE /home/deploy/shared/pids/unicorn.pid
+  start program "/etc/init.d/unicorn_gameimprovement start"
+  stop program "/etc/init.d/unicorn_gameimprovement stop"
+  IF 5 RESTARTS WITHIN 5 CYCLES THEN timeout
+  IF totalcpu IS GREATER THAN 50% FOR 2 CYCLES THEN alert 
+  IF totalcpu IS GREATER THAN 90% FOR 2 CYCLES THEN restart 
+  IF totalmem IS GREATER THAN 60% FOR 2 CYCLES THEN restart 
+
