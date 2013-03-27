@@ -10,7 +10,7 @@ template "/etc/sysctl.d/70-gameimprovement-defaults.conf" do
   owner "root"
   group "root"
   source "sysctl.conf.erb"
-  cookbook "gameimprovement_bootstrap"
+  cookbook "bootstrap"
 end
 
 node[:sysctl].each do |systcl, value|

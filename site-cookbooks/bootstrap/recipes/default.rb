@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: gameimprovement_bootstrap
+# Cookbook Name:: bootstrap
 # Recipe:: default
 #
 # Copyright 2013, YOUR_COMPANY_NAME

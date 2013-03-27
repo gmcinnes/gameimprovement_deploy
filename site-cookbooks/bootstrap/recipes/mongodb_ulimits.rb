@@ -1,4 +1,4 @@
-resources("template[/etc/default/mongodb]").cookbook "gameimprovement_bootstrap"
+resources("template[/etc/default/mongodb]").cookbook "bootstrap"
 
 ruby_block "edit /etc/init.d/mongodb to use bash" do
  block do

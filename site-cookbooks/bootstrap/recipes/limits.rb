@@ -1,5 +1,5 @@
 template "/etc/security/limits.conf" do
-  cookbook "gameimprovement_bootstrap"
+  cookbook "bootstrap"
   source "limits.conf.erb"
   group "root"
   owner "root"

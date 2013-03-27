@@ -15,6 +15,10 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80, host: 8080
   
   cmd = <<-EOF
+    if [ ! `which curl` ]; then
+      apt-get install -y curl
+    fi
+
     if [ -d /opt/vagrant_ruby ]; then
       rm -rf /opt/vagrant_ruby
     fi

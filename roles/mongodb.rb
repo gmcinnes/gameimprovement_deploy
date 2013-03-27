@@ -3,8 +3,8 @@ description "Mongodb Server"
 
 run_list(
     "recipe[mongodb]",
-    "recipe[gameimprovement_bootstrap::limits]",
-    "recipe[gameimprovement_bootstrap::mongodb_ulimits]"
+    "recipe[bootstrap::limits]",
+    "recipe[bootstrap::mongodb_ulimits]"
 )
 
 

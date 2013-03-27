@@ -2,9 +2,9 @@ name "baseline"
 description "Web Server"
 
 run_list(
-    "recipe[gameimprovement_bootstrap::app_bundle_dependencies]",
+    "recipe[bootstrap::app_bundle_dependencies]",
     "recipe[nginx]",
-    "recipe[gameimprovement_bootstrap::monit_definitions]"
+    "recipe[bootstrap::monit_definitions]"
 )
 
 override_attributes(
