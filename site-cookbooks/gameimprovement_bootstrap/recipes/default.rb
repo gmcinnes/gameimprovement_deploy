@@ -7,5 +7,3 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "gameimprovement_bootstrap::apt_get_upgrade"
-
