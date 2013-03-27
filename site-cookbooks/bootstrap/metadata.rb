@@ -1,4 +1,4 @@
-name             'gameimprovement_bootstrap'
+name             'bootstrap'
 maintainer       'Brent Jubinville'
 maintainer_email 'brent@utilityboy.com'
 license          'All rights reserved'
