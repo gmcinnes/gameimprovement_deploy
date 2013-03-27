@@ -1,4 +1,4 @@
-cookbook_path [File.join(Dir.pwd, 'vendor/cookbooks'), File.join(Dir.pwd, './site-cookbooks')]
+cookbook_path [File.join(Dir.pwd, 'vendor/cookbooks'), File.join(Dir.pwd, 'site-cookbooks')]
 role_path File.join(Dir.pwd, 'roles')
 log_level :warn
 
