@@ -22,7 +22,6 @@ run_list(
     "recipe[rbenv::ruby_build]",
     "recipe[gameimprovement_bootstrap::install_ruby]",
     "recipe[build-essential]",
-    "recipe[gameimprovement_bootstrap::ruby_shadow]",
     "recipe[user]",
     "recipe[user::data_bag]"
 )

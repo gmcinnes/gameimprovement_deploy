@@ -13,6 +13,17 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # Port 2222 -> 22 is provided for ssh by default
   config.vm.network :forwarded_port, guest: 80, host: 8080
+  
+  cmd = <<-EOF
+    if [ -d /opt/vagrant_ruby ]; then
+      rm -rf /opt/vagrant_ruby
+    fi
+    
+    if [ ! -d /opt/chef ]; then
+      curl -L https://www.opscode.com/chef/install.sh | sudo bash
+    fi
+  EOF
+  config.vm.provision :shell, :inline => cmd
 
   config.vm.provision :chef_solo do |chef|
     chef.data_bags_path = "data_bags"

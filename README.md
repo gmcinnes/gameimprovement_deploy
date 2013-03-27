@@ -16,6 +16,8 @@ This code provides three things:
 
 
 ### Not using Vagrant
+`curl -L https://www.opscode.com/chef/install.sh | sudo bash`
+`gem install berkshelf --no-ri --no-rdoc`
 
 ## Vagrantfile
 

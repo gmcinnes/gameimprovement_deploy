@@ -20,6 +20,9 @@ override_attributes(
         "hard" => "64001"
       }
     }
+  },
+  "mongodb" => {
+    "package_name" => "mongodb"
   }
 )
 
