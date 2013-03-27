@@ -1,6 +1,3 @@
-gameimprovement deploy
-======================
-
 #Game Improvement Deploy Tools
 
 This code provides three things:
@@ -12,8 +9,15 @@ This code provides three things:
 
 ## Install
 
-### Using Vagrant 
 
+### Using Vagrant 
+### Dependencies
+
+* Install Vagrant http://www.vagrantup.com/
+* Install Ruby Bundler http://gembundler.com/
+* `bundle install --binstubs`
+* `vagrant up`
+* That's it.  You're done, motherfucker
 
 ### Not using Vagrant
 `curl -L https://www.opscode.com/chef/install.sh | sudo bash`
