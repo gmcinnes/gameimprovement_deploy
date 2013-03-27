@@ -9,9 +9,7 @@ This code provides three things:
 
 ## Install
 
-
-### Using Vagrant 
-### Dependencies
+### With Vagrant (local machine testing, or EC2)
 
 * Install Vagrant http://www.vagrantup.com/
 * Install Ruby Bundler http://gembundler.com/
@@ -19,9 +17,16 @@ This code provides three things:
 * `vagrant up`
 * That's it.  You're done, motherfucker
 
-### Not using Vagrant
-`curl -L https://www.opscode.com/chef/install.sh | sudo bash`
-`gem install berkshelf --no-ri --no-rdoc`
+### Not using Vagrant (remote production machine)
+
+* Be root
+* `curl -L https://www.opscode.com/chef/install.sh | sudo bash`
+* `/opt/chef/embedded/bin/gem install berkshelf --no-ri --no-rdoc`
+* `wget https://api.github.com/repos/gmcinnes/gameimprovement_deploy/tarball deploy.tar.gz`
+* `tar -zxvf deploy.tar.gz`
+* `cd gmcinnes-gameimprovement_deploy-82b9dba`
+* `/opt/chef/embedded/bin/berks install --path vender/cookbook`
+* `/opt/chef/bin/chef-solo -c "$PWD"/solo.rb  -j "$PWD"/dna.json`
 
 ## Vagrantfile
 
