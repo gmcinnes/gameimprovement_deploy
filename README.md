@@ -14,6 +14,7 @@ This code provides three things:
 * Install Vagrant http://www.vagrantup.com/
 * Install Ruby Bundler http://gembundler.com/
 * `bundle install --binstubs`
+* Create data_bags/secrets/*.json files from data_bags/secrets/*.json.template files
 * `vagrant up`
 * That's it.  You're done, motherfucker
 
@@ -26,7 +27,7 @@ This code provides three things:
 * `tar -zxvf deploy.tar.gz`
 * `cd gmcinnes-gameimprovement_deploy-82b9dba`
 * `/opt/chef/embedded/bin/berks install --path vendor/cookbooks`
-* Create data_bags/secrets/*.json files from data_bags/secrets/*.template files
+* Create data_bags/secrets/*.json files from data_bags/secrets/*.json.template files
 * `/opt/chef/bin/chef-solo -c "$PWD"/solo.rb  -j "$PWD"/dna.json`
 
 ## Vagrantfile

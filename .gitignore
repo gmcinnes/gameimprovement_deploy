@@ -19,5 +19,5 @@ doc/
 
 bin/*
 .vagrant
-data_bags/secrets/**/*.json
+data_bags/secrets/*.json
 vendor/*
