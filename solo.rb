@@ -1,8 +1,8 @@
-cookbook_path ["./vendor/cookbooks", "./site-cookbooks"]
-role_path "./roles"
-log_level :info
+cookbook_path [File.join(Dir.pwd, 'vendor/cookbooks'), File.join(Dir.pwd, './site-cookbooks')]
+role_path File.join(Dir.pwd, 'roles')
+log_level :warn
 
-data_bag_path "./data_bags"
+data_bag_path File.join(Dir.pwd, 'data_bags')
 
 
 http_proxy nil

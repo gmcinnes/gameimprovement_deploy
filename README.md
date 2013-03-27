@@ -22,10 +22,10 @@ This code provides three things:
 * Be root
 * `curl -L https://www.opscode.com/chef/install.sh | sudo bash`
 * `/opt/chef/embedded/bin/gem install berkshelf --no-ri --no-rdoc`
-* `wget https://api.github.com/repos/gmcinnes/gameimprovement_deploy/tarball deploy.tar.gz`
+* `wget -O deploy.tar.gz https://api.github.com/repos/gmcinnes/gameimprovement_deploy/tarball`
 * `tar -zxvf deploy.tar.gz`
 * `cd gmcinnes-gameimprovement_deploy-82b9dba`
-* `/opt/chef/embedded/bin/berks install --path vender/cookbook`
+* `/opt/chef/embedded/bin/berks install --path vendor/cookbook`
 * `/opt/chef/bin/chef-solo -c "$PWD"/solo.rb  -j "$PWD"/dna.json`
 
 ## Vagrantfile
