@@ -28,6 +28,9 @@ override_attributes(
     "rules" => [
       "open ports for http" => {
         "port" => "80"
+      },
+      "open ports for https" => {
+        "port" => "443"
       }
     ]
   }
