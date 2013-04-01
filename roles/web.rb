@@ -25,8 +25,10 @@ override_attributes(
     "options"        => { "tcp_nodelay" => true, "backlog" => 100 }
   },
   "firewall" => {
-    "open ports for http" => {
-      "port" => "80"
-    }
+    "rules" => [
+      "open ports for http" => {
+        "port" => "80"
+      }
+    ]
   }
 )
