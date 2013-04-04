@@ -27,10 +27,16 @@ run_list(
 )
 
 override_attributes(
+  "monit" => {
+    "notify_mail" => "root@localhost",
+    "mail_format" => {
+      "from" => "monit@gameimprovement.com"
+    }
+  },
   "postfix" => {
-    "mydomain" => "gameimprovement.ca",
+    "mydomain" => "gameimprovement.com",
     "myorigin" => "$mydomain",
-    "myhostname" => "gameimprovement.ca",
+    "myhostname" => "gameimprovement.com",
     "relayhost" => "[smtp.gmail.com]:587",
     "smtp_use_tls" => "yes",
     "smtp_sasl_auth_enable" => "yes",
@@ -40,7 +46,7 @@ override_attributes(
     "smtp_tls_security_options" => "may",
     "aliases" => {
       "monit" => "root",
-      "root" => "grantmcinnes1@gmail.com"
+      "root" => "brent@marbletank.com"
     }
   },
   "openssh" => {
