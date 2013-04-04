@@ -2,9 +2,9 @@ name "mongodb"
 description "Mongodb Server"
 
 run_list(
-    "recipe[mongodb]",
-    "recipe[bootstrap::limits]",
-    "recipe[bootstrap::mongodb_ulimits]"
+    # "recipe[mongodb]",
+    # "recipe[bootstrap::limits]",
+    # "recipe[bootstrap::mongodb_ulimits]"
 )
 
 
