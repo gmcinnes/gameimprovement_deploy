@@ -28,7 +28,7 @@ run_list(
 
 override_attributes(
   "monit" => {
-    "notify_mail" => "root@localhost",
+    "notify_email" => "root@localhost",
     "mail_format" => {
       "from" => "monit@gameimprovement.com"
     }
