@@ -13,6 +13,7 @@ run_list(
     "recipe[vim]",
     "recipe[sudo]",
     "recipe[monit]",
+    "recipe[bootstrap::monit_init_fix]",
     "recipe[monit::ssh]",
     "recipe[monit::postfix]",
     "recipe[ufw]",
