@@ -18,9 +18,9 @@ cookbook 'nginx'
 cookbook 'nodejs'
 cookbook 'npm'
 cookbook 'unicorn'
-# Pulling this from git because community cookbook doesn't work
-# with Chef 11 yet
-cookbook 'mongodb', git: 'https://github.com/edelight/chef-mongodb.git'
+# Pulling this from a simpler mongodb chef implementation, because
+# the community cookbook one seems to fail in a myriad of ways 
+cookbook 'mongodb', git: 'https://github.com/sdomino/chef-mongodb.git'
 cookbook 'logrotate'
 cookbook 'phantomjs'
 cookbook 'fail2ban'
