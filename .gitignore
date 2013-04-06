@@ -21,3 +21,4 @@ bin/*
 .vagrant
 data_bags/secrets/*.json
 vendor/*
+*.swp
