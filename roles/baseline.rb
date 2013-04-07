@@ -7,6 +7,7 @@ run_list(
     "recipe[ntp]",
     "recipe[postfix]",
     "recipe[postfix::aliases]",
+    "recipe[bootstrap::tweak_aliases_for_postfix]",
     "recipe[bootstrap::install_postfix_credentials]",
     "recipe[bootstrap::sysctl]",
     "recipe[openssh]",
