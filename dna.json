@@ -1,8 +1,0 @@
-{
-  "run_list": [
-    "role[baseline]",
-    "role[web]",
-    "role[mongodb]",
-    "role[image_generation_server]"
-  ]
-}
