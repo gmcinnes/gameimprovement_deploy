@@ -48,7 +48,7 @@ override_attributes(
     "smtp_tls_security_options" => "may",
     "aliases" => {
       "monit" => "root",
-      "root" => "brent@marbletank.com"
+      "root" => "support@gameimprovement.com"
     }
   },
   "openssh" => {
