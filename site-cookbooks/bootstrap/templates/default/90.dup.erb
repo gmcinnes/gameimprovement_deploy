@@ -1,6 +1,6 @@
 # passed directly to duplicity
-options = --verbosity 8
-#options = 
+#options = --verbosity 8
+options = 
 
 # default is 0, but set to 19 if you want to lower the priority.
 nicelevel = 19
@@ -79,6 +79,7 @@ include = /etc
 include = /root
 include = /home
 include = /usr/local/*bin
+include = /opt
 include = /var/lib/dpkg/status*
 
 # If vservers = yes in /etc/backupninja.conf then the following variables can
@@ -146,8 +147,8 @@ keepincroffulls =
 # bandwithlimit. For details, see duplicity manpage, section "URL FORMAT".
 #desturl = file:///usr/local/backup
 #desturl = rsync://user@other.host//var/backup/bla
-desturl = s3+http://gi-backups
 #desturl = ftp://myftpuser@ftp.example.org/remote/ftp/path
+desturl = s3+http://GIBackups
 
 # Amazon Web Services Access Key ID and Secret Access Key, needed for backups
 # to S3 buckets.
