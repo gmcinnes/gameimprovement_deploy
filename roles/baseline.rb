@@ -25,7 +25,8 @@ run_list(
     "recipe[bootstrap::install_ruby]",
     "recipe[build-essential]",
     "recipe[user]",
-    "recipe[user::data_bag]"
+    "recipe[user::data_bag]",
+    "recipe[bootstrap::backupninja]"
 )
 
 override_attributes(
