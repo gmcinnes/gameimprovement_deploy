@@ -22,3 +22,5 @@ bin/*
 data_bags/secrets/*.json
 vendor/*
 *.swp
+
+aws_credentials.json

@@ -1,7 +1,30 @@
 require 'berkshelf/vagrant'
 
 Vagrant.configure("2") do |config|
+  
+  # This is an Ubuntu 12.04LTS 64-bit AMI provided by Amazon
+  AWS_AMI =  'ami-3fec7956'
+  
+  # We store our credentials in a json file that we .gitignore so that
+  # our Amazon credentials don't find themselves in indiscreet places
+  AWS_CRED_FILENAME = File.dirname(__FILE__) + "/aws_credentials.json"
+  if File.exist?(AWS_CRED_FILENAME)
+    str = File.read(AWS_CRED_FILENAME)
+    aws_creds = JSON.parse(str)
+  end
 
+  # Configure the aws provider with our chosen AMI and credentials.
+  # There are other options that could go here.  See
+  # https://github.com/mitchellh/vagrant-aws for details
+  config.vm.provider :aws do |aws|
+    aws.access_key_id = aws_creds['access_key_id']
+    aws.secret_access_key = aws_creds['secret_access_key']
+    aws.ami = AWS_AMI 
+    aws.ssh_username = aws_creds['ssh_username'] 
+    aws.keypair_name = aws_creds['keypair_name'] 
+    aws.ssh_private_key_path = aws_creds['ssh_private_key_path'] 
+  end
+ 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "precise64"
 
