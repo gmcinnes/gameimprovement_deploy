@@ -1,3 +1,13 @@
+#
+# Cookbook Name:: bootstrap
+# Recipe:: monit_init_fix 
+#
+# Copyright 2013, Gameimprovement 
+#
+# All rights reserved - Do Not Redistribute
+#
+# Fix a bug in the monit init.d script (see:
+# https://bugs.launchpad.net/ubuntu/+source/monit/+bug/993381)
 ruby_block "Fix monit init script bug" do
   block do
     init = Chef::Util::FileEdit.new("/etc/init.d/monit")

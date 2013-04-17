@@ -1,3 +1,13 @@
+#
+# Cookbook Name:: bootstrap
+# Recipe:: backupninja 
+#
+# Copyright 2013, Gameimprovement 
+#
+# All rights reserved - Do Not Redistribute
+#
+# Do a system wide apt-get upgrade
+# Install and configure backupninja backup system
 package "backupninja"
 package "hwinfo"
 package "debconf-utils"

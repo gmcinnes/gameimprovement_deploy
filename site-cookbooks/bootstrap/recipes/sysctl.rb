@@ -1,3 +1,13 @@
+#
+# Cookbook Name:: bootstrap
+# Recipe:: sysctl 
+#
+# Copyright 2013, Gameimprovement 
+#
+# All rights reserved - Do Not Redistribute
+#
+# Tweak some Linux sysctl values to improve networking
+# performance etc.
 directory "/etc/sysctl.d" do
   mode 0755
   owner "root"
