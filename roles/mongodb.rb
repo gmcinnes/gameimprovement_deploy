@@ -9,6 +9,8 @@ run_list(
 
 
 override_attributes(
+  # Linux enforces limits on the number of open files, or running processes a
+  # user can have.  We try and increase that for the mongodb user.
   "limits" => {
     "mongodb" => {
       "nproc" => {

@@ -17,6 +17,7 @@ run_list(
     "recipe[bootstrap::monit_init_fix]",
     "recipe[monit::ssh]",
     "recipe[monit::postfix]",
+    "recipe[bootstrap::monit_baseline]",
     "recipe[ufw]",
     "recipe[logrotate]",
     "recipe[fail2ban]",
@@ -30,12 +31,22 @@ run_list(
 )
 
 override_attributes(
+
+  # Send monit mails to root@localhost.  Later we'll use 
+  # /etc/aliases and postfix to bounce all the root mail over
+  # to the actual sysadmin
   "monit" => {
     "notify_email" => "root@localhost",
     "mail_format" => {
       "from" => "monit@gameimprovement.com"
     }
   },
+
+  # Configure postfix.  We're configuring a situation here where
+  # we're relaying mail through gmail's SMTP server.  We connect
+  # to it using SASL.  The credentials for the SASL connection
+  # are picked up in the recipe from a data bag.  See
+  # data_bags/secrets/gmail.json.template for details.
   "postfix" => {
     "mydomain" => "gameimprovement.com",
     "myorigin" => "$mydomain",
@@ -47,11 +58,17 @@ override_attributes(
     "smtp_tls_cafile" => "/usr/lib/ssl/certs/Equifax_Secure_CA.pem",
     "smtp_sasl_security_options" => "",
     "smtp_tls_security_options" => "may",
+    
+    # Here we're adding aliases for /etc/aliases.  Mail to monit goes to 
+    # root, and mail to root goes to support@gameimprovement.com
     "aliases" => {
       "monit" => "root",
       "root" => "support@gameimprovement.com"
     }
   },
+
+  # Turn on sftp inside openssh.  Turn off password authentication,
+  # and don't permit root logins
   "openssh" => {
     "server" => {
       "subsystem" => "sftp internal-sftp",
@@ -59,8 +76,9 @@ override_attributes(
       "permit_root_login" => "no"
     }
   },
+  
+  # Sysctl Magic Shit (TM)
   "sysctl" => { 
-    # Sysctl Magic Shit (TM)
     
     # 256 KB default performs well experimentally, and is often 
     # recommended by ISVs.
