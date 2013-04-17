@@ -5,7 +5,7 @@ run_list(
     "recipe[bootstrap::app_bundle_dependencies]",
     "recipe[nginx]",
     "recipe[bootstrap::monit_definitions]",
-    "recipe[bootstrap::install_imagemagick]"
+    "recipe[nodejs]"
 )
 
 override_attributes(
