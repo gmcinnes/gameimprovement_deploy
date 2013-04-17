@@ -16,7 +16,6 @@ cookbook 'sudo'
 cookbook 'postfix'
 cookbook 'nginx'
 cookbook 'nodejs'
-cookbook 'npm'
 cookbook 'unicorn'
 # Pulling this from a simpler mongodb chef implementation, because
 # the community cookbook one seems to fail in a myriad of ways 
