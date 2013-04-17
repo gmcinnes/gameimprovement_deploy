@@ -95,7 +95,8 @@ community cookbooks by having site-cookbooks.
 Although we could split our customization up into multiple site-cookbooks, the
 complexity is low enough at the moment that we only have one: **bootstrap**
 
-* app\_bundle\_dependencies - Install XML libaries for Bundler
+* app\_bundle\_dependencies - Install XML libaries for Bundler to use when
+  building Nokogiri 
 * apt\_get\_upgrade - Do a system-wide apt-get upgrade
 * backupninja - Install and configure Backupninja backup system
 * install\_imagemagick - Install imagemagick library for graphics manipulation
