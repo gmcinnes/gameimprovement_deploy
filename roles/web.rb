@@ -10,6 +10,9 @@ run_list(
 )
 
 override_attributes(
+  # Create a user called "deploy" to handle running our app under
+  "users" => ["deploy"],
+
   # Adjust sudo so that any users in the admin, wheel, sysadmin
   # groups get sudo access. Ditto, the "vagrant" and "deploy"
   # users.
@@ -26,8 +29,6 @@ override_attributes(
     }
   },
 
-  # Create a user called "deploy" to handle running our app under
-  "users" => ["deploy"],
 
   # Set various parameters about Unicorn.  We sleep before forking just
   # to throttle the master process from forking too quickly. Apparently this 
