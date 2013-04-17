@@ -3,6 +3,7 @@ site :opscode
 cookbook 'apt'
 cookbook 'unattended_upgrades'
 cookbook 'bootstrap', path: "./site-cookbooks/bootstrap"
+cookbook 'site_monit', path: "./site-cookbooks/site_monit"
 cookbook 'rbenv'
 cookbook 'monit'
 cookbook 'ntp'

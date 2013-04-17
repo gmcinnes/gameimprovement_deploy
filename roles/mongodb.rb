@@ -4,7 +4,7 @@ description "Mongodb Server"
 run_list(
   "recipe[mongodb]",
   "recipe[bootstrap::limits]",
-  "recipe[bootstrap::monit_mongodb]"
+  "recipe[site_monit::mongodb]"
 )
 
 

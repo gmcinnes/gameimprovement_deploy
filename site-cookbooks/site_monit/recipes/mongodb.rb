@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: bootstrap
-# Recipe:: monit_mongodb 
+# Cookbook Name:: site_monit 
+# Recipe:: mongodb 
 #
 # Copyright 2013, Gameimprovement 
 #

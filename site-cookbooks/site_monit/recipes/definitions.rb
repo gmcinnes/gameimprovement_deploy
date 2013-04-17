@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: bootstrap
-# Recipe:: monit_definitions 
+# Cookbook Name:: site_monit 
+# Recipe:: definitions 
 #
 # Copyright 2013, Gameimprovement 
 #
@@ -18,3 +18,7 @@ template "/etc/monit/conf.d/delayed_job.conf" do
   source "delayed_job.conf"
 end
 
+template "/etc/monit/conf.d/resources.conf" do
+  mode "0644"
+  source "resources.conf"
+end

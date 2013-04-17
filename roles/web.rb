@@ -4,7 +4,7 @@ description "Web Server"
 run_list(
     "recipe[bootstrap::app_bundle_dependencies]",
     "recipe[nginx]",
-    "recipe[bootstrap::monit_web]",
+    "recipe[site_monit::web]",
     "recipe[nodejs::install_from_package]",
     "recipe[ufw]"
 )

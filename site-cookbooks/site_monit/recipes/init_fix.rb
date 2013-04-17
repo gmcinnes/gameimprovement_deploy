@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: bootstrap
-# Recipe:: monit_init_fix 
+# Cookbook Name:: site_monit 
+# Recipe:: init_fix 
 #
 # Copyright 2013, Gameimprovement 
 #
