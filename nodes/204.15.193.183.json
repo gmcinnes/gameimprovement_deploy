@@ -4,6 +4,7 @@
     "role[web]",
     "role[mongodb]",
     "role[image_generation_server]",
-    "role[backup_client]"
+    "role[backup_client]",
+    "role[mongodb_backup_client]"
   ]
 }
