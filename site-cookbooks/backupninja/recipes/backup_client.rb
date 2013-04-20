@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bootstrap
+# Cookbook Name:: backupninja
 # Recipe:: backup_client 
 #
 # Copyright 2013, Gameimprovement 
