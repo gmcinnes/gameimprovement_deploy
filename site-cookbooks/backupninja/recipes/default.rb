@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: bootstrap
-# Recipe:: backupninja 
+# Cookbook Name:: backupninja
+# Recipe:: default
 #
-# Copyright 2013, Gameimprovement 
+# Copyright 2013, Brent Jubinville
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -35,4 +35,3 @@ template "/etc/backupninja.conf" do
   owner "root"
   group "root"
 end
-

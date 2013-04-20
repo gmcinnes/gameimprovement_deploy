@@ -69,6 +69,5 @@ Vagrant.configure("2") do |config|
     chef.add_role("web")
     chef.add_role("mongodb")
     chef.add_role("image_generation_server")
-                
   end
 end

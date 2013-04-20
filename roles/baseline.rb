@@ -27,7 +27,7 @@ run_list(
     "recipe[build-essential]",
     "recipe[user]",
     "recipe[user::data_bag]",
-    "recipe[bootstrap::backupninja]"
+    "recipe[backupninja]"
 )
 
 override_attributes(
