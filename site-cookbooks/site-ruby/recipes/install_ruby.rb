@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bootstrap
+# Cookbook Name:: site-ruby 
 # Recipe:: install_ruby 
 #
 # Copyright 2013, Gameimprovement 

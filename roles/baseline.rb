@@ -23,7 +23,7 @@ run_list(
     "recipe[fail2ban]",
     "recipe[rbenv]",
     "recipe[rbenv::ruby_build]",
-    "recipe[bootstrap::install_ruby]",
+    "recipe[site-ruby::install_ruby]",
     "recipe[build-essential]",
     "recipe[user]",
     "recipe[user::data_bag]",

@@ -2,7 +2,6 @@ name "web"
 description "Web Server"
 
 run_list(
-    "recipe[bootstrap::app_bundle_dependencies]",
     "recipe[nginx]",
     "recipe[site_monit::web]",
     "recipe[nodejs::install_from_package]",
