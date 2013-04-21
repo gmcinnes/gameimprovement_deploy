@@ -8,6 +8,7 @@ cookbook 'backupninja', path: "./site-cookbooks/backupninja"
 cookbook 'site-postfix', path: "./site-cookbooks/site-postfix"
 cookbook 'site-ruby', path: "./site-cookbooks/site-ruby"
 cookbook 'site-mongodb', path: "./site-cookbooks/site-mongodb"
+cookbook 'site-apt', path: "./site-cookbooks/site-apt"
 cookbook 'rbenv'
 cookbook 'monit'
 cookbook 'ntp'

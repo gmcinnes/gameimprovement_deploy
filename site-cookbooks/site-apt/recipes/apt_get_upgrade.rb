@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bootstrap
+# Cookbook Name:: site-apt 
 # Recipe:: apt_get_upgrade
 #
 # Copyright 2013, Gameimprovement 

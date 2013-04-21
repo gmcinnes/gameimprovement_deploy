@@ -3,7 +3,7 @@ description "Universal Server Baseline"
 run_list(
     "recipe[apt]",
     "recipe[unattended_upgrades]",
-    "recipe[bootstrap::apt_get_upgrade]",
+    "recipe[site-apt::apt_get_upgrade]",
     "recipe[ntp]",
     "recipe[postfix]",
     "recipe[postfix::aliases]",
