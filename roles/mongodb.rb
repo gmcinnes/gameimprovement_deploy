@@ -3,7 +3,7 @@ description "Mongodb Server"
 
 run_list(
   "recipe[mongodb]",
-  "recipe[bootstrap::limits]",
+  "recipe[site-mongodb::limits]",
   "recipe[site_monit::mongodb]"
 )
 

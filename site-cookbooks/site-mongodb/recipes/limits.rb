@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bootstrap
+# Cookbook Name:: site-mongodb 
 # Recipe:: limits 
 #
 # Copyright 2013, Gameimprovement 
@@ -8,7 +8,6 @@
 #
 # Increase system process limits, and open file limits for mongodb 
 template "/etc/security/limits.conf" do
-  cookbook "bootstrap"
   source "limits.conf.erb"
   group "root"
   owner "root"
