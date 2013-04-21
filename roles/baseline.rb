@@ -9,7 +9,7 @@ run_list(
     "recipe[postfix::aliases]",
     "recipe[site-postfix::tweak_aliases_for_postfix]",
     "recipe[site-postfix::install_postfix_credentials]",
-    "recipe[bootstrap::sysctl]",
+    "recipe[site-sysctl::sysctl]",
     "recipe[openssh]",
     "recipe[vim]",
     "recipe[sudo]",

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bootstrap
+# Cookbook Name:: site-sysctl 
 # Recipe:: sysctl 
 #
 # Copyright 2013, Gameimprovement 
