@@ -5,6 +5,7 @@ cookbook 'unattended_upgrades'
 cookbook 'bootstrap', path: "./site-cookbooks/bootstrap"
 cookbook 'site_monit', path: "./site-cookbooks/site_monit"
 cookbook 'backupninja', path: "./site-cookbooks/backupninja"
+cookbook 'site-postfix', path: "./site-cookbooks/site-postfix"
 cookbook 'rbenv'
 cookbook 'monit'
 cookbook 'ntp'

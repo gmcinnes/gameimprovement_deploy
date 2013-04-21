@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: bootstrap
+# Cookbook Name:: site-postfix 
 # Recipe:: install_postfix_credentials 
 #
 # Copyright 2013, Gameimprovement 
