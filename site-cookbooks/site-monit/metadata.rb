@@ -1,4 +1,4 @@
-name             'site_monit'
+name             'site-monit'
 maintainer       'Brent Jubinville'
 maintainer_email 'brent@utilityboy.com'
 license          'All rights reserved'

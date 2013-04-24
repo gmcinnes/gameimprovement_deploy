@@ -3,7 +3,7 @@ description "Web Server"
 
 run_list(
     "recipe[nginx]",
-    "recipe[site_monit::web]",
+    "recipe[site-monit::web]",
     "recipe[nodejs::install_from_package]",
     "recipe[ufw]"
 )

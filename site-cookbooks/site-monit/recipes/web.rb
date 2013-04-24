@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: site_monit 
+# Cookbook Name:: site-monit 
 # Recipe:: definitions 
 #
 # Copyright 2013, Gameimprovement 

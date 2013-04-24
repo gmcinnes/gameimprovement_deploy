@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: site_monit
+# Cookbook Name:: site-monit
 # Recipe:: default
 #
 # Copyright 2013, Brent Jubinville
