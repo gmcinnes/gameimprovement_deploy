@@ -2,13 +2,13 @@ site :opscode
 
 cookbook 'apt'
 cookbook 'unattended_upgrades'
-cookbook 'bootstrap', path: "./site-cookbooks/bootstrap"
 cookbook 'site_monit', path: "./site-cookbooks/site_monit"
 cookbook 'backupninja', path: "./site-cookbooks/backupninja"
 cookbook 'site-postfix', path: "./site-cookbooks/site-postfix"
 cookbook 'site-ruby', path: "./site-cookbooks/site-ruby"
 cookbook 'site-mongodb', path: "./site-cookbooks/site-mongodb"
 cookbook 'site-apt', path: "./site-cookbooks/site-apt"
+cookbook 'site-sysctl', path: "./site-cookbooks/site-sysctl"
 cookbook 'rbenv'
 cookbook 'monit'
 cookbook 'ntp'
