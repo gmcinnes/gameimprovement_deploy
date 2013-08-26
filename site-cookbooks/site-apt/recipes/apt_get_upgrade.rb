@@ -8,6 +8,7 @@
 #
 # Do a system wide apt-get upgrade
 execute "apt-get upgrade" do
+  environment ({'DEBIAN_FRONTEND' => 'noninteractive'})
   command "apt-get upgrade -y --force-yes"
   ignore_failure true
 end
